@@ -371,12 +371,3 @@ Request:
 * Responsive Frontend Development
 * Full Stack Application Design
 
----
-
-## 👨‍💻 Author
-
-Sajal Gupta
-
-Backend Software Engineer
-
-Built to explore the intersection of Computer Vision, Generative AI, and Personalized Recommendation Systems.

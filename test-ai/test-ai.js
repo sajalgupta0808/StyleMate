@@ -4,7 +4,7 @@ console.log("1. File started");
 
 const {
     analyzeClothingImage
-} = require("./services/aiService");
+} = require("../services/aiService");
 
 console.log("2. AI service imported");
 
