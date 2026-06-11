@@ -1,60 +1,85 @@
+let wardrobeData = [];
+
 async function loadWardrobe() {
 
   const response =
-    await fetch(
-      "/api/clothes"
-    );
+    await fetch("/api/clothes");
 
   const result =
     await response.json();
 
-  const container =
+  wardrobeData =
+    result.data;
+
+  renderWardrobe(
+    wardrobeData
+  );
+}
+
+function renderWardrobe(items) {
+
+  const grid =
     document.getElementById(
-      "wardrobeContainer"
+      "wardrobeGrid"
     );
 
-  container.innerHTML = "";
+  grid.innerHTML = "";
 
-  result.data.forEach(item => {
+  items.forEach(item => {
 
-    container.innerHTML += `
+    grid.innerHTML += `
 
-      <div class="col-md-4 mb-4">
+      <div class="card">
 
-        <div class="card">
+        <img
+          src="/${item.image_path}"
+          alt="${item.display_name}"
+        >
 
-          <img
-            src="/${item.image_path}"
-            class="card-img-top"
-            style="
-              height:300px;
-              object-fit:cover;
-            "
-          >
+        <div class="card-body">
 
-          <div class="card-body">
+          <h3 class="card-title">
+            ${item.display_name || "Unknown"}
+          </h3>
 
-            <h5>
-              ${item.category || "Unknown"}
-            </h5>
+          <p>
+            ${item.category}
+          </p>
 
-            <p>
-              Color:
-              ${item.primary_color || "Unknown"}
-            </p>
-
-            <p>
-              Pattern:
-              ${item.pattern || "Unknown"}
-            </p>
-
-          </div>
+          <span class="badge">
+            ${item.primary_color}
+          </span>
 
         </div>
 
       </div>
     `;
+
   });
+
 }
+
+document
+.getElementById("search")
+.addEventListener(
+  "input",
+  e => {
+
+    const value =
+      e.target.value
+        .toLowerCase();
+
+    const filtered =
+      wardrobeData.filter(item =>
+        item.display_name
+          ?.toLowerCase()
+          .includes(value)
+      );
+
+    renderWardrobe(
+      filtered
+    );
+  }
+);
 
 loadWardrobe();

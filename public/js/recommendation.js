@@ -5,6 +5,13 @@ async function generateOutfit() {
       "occasion"
     ).value;
 
+  document.getElementById(
+    "result"
+  ).innerHTML = `
+    <div class="spinner"></div>
+    <p>AI is styling your outfit...</p>
+  `;
+
   const response =
     await fetch(
       "/api/recommendations",
@@ -13,12 +20,12 @@ async function generateOutfit() {
 
         headers: {
           "Content-Type":
-            "application/json",
+            "application/json"
         },
 
         body: JSON.stringify({
-          occasion,
-        }),
+          occasion
+        })
       }
     );
 
@@ -28,38 +35,41 @@ async function generateOutfit() {
   document.getElementById(
     "result"
   ).innerHTML = `
-    <div class="card p-3">
 
-      <h3>
-        Recommended Outfit
-      </h3>
+    <div class="card">
 
-      <p>
-        Top:
-        ${
-          result.data.top
-            ?.display_name
-            || "N/A"
-        }
-      </p>
+      <div class="card-body">
 
-      <p>
-        Bottom:
-        ${
-          result.data.bottom
-            ?.display_name
-            || "N/A"
-        }
-      </p>
+        <h2>
+          Recommended Outfit
+        </h2>
 
-      <p>
-        Footwear:
-        ${
-          result.data.footwear
-            ?.display_name
-            || "N/A"
-        }
-      </p>
+        <p>
+          👔 Top:
+          ${result.data.top || "N/A"}
+        </p>
+
+        <p>
+          👖 Bottom:
+          ${result.data.bottom || "N/A"}
+        </p>
+
+        <p>
+          👟 Footwear:
+          ${result.data.footwear || "N/A"}
+        </p>
+
+        <hr>
+
+        <h3>
+          Why this works
+        </h3>
+
+        <p>
+          ${result.data.reason || ""}
+        </p>
+
+      </div>
 
     </div>
   `;

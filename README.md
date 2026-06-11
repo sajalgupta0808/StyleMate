@@ -1,20 +1,20 @@
-# StyleMate 👔✨
+# 👔 StyleMate - AI Powered Personal Wardrobe Assistant
 
-StyleMate is an AI-powered wardrobe assistant that helps users digitize their wardrobe, organize clothing items, and receive outfit recommendations based on occasions.
+StyleMate is an AI-powered wardrobe management and outfit recommendation platform that helps users digitize their wardrobe, organize clothing items, and receive intelligent outfit suggestions based on occasions.
 
-The application uses AI vision models to analyze uploaded clothing images, extract metadata such as category, color, pattern, and fit, and store them in a structured wardrobe database.
+The platform leverages Computer Vision and Large Language Models (LLMs) to automatically analyze clothing images, extract fashion metadata, and generate personalized outfit recommendations.
 
 ---
 
-## Features
+## 🚀 Features
 
-### AI Clothing Analysis
+### 📸 AI Clothing Recognition
 
-Upload an image of a clothing item and automatically extract:
+Upload a clothing image and StyleMate automatically identifies:
 
 * Category
 * Subcategory
-* Primary Color
+* Color
 * Pattern
 * Fit
 * Suitable Occasions
@@ -34,52 +34,97 @@ Example:
 
 ---
 
-### Digital Wardrobe
+### 👕 Digital Wardrobe
 
-Maintain a centralized wardrobe containing:
+Create a centralized digital wardrobe containing:
 
-* Clothing
+* Topwear
+* Bottomwear
 * Footwear
 * Accessories
-* Future support for Makeup
 
-Users can browse all stored wardrobe items from a simple UI.
+Users can browse, search, and organize their wardrobe through a modern web interface.
 
 ---
 
-### Outfit Recommendations
+### 🤖 AI Stylist
 
-Generate outfit recommendations based on occasions such as:
+Generate outfit recommendations for:
 
-* Casual
-* Office
-* Date Night
-* Party
+* Casual Outings
+* Office Wear
+* Date Nights
+* Parties
 
-Example:
+Example Recommendation:
 
 ```json
 {
-  "occasion": "casual",
-  "top": "Black T-Shirt",
-  "bottom": "Blue Jeans",
-  "footwear": "White Sneakers"
+  "occasion": "Date Night",
+  "top": "White Shirt",
+  "bottom": "Khaki Chinos",
+  "footwear": "Brown Loafers"
 }
 ```
 
 ---
 
-### AI-Powered Styling
+### 🧠 AI Fashion Reasoning
 
-Leverages local AI models through Ollama to:
+StyleMate can explain why an outfit works:
 
-* Analyze clothing images
-* Generate structured metadata
-* Provide styling insights
+> "The white shirt and khaki chinos create a smart-casual appearance while brown loafers add sophistication, making the outfit ideal for a date night."
 
 ---
 
-## Tech Stack
+## 🏗️ System Architecture
+
+```text
+                     ┌──────────────────┐
+                     │   User Uploads   │
+                     │ Clothing Image   │
+                     └────────┬─────────┘
+                              │
+                              ▼
+                     ┌──────────────────┐
+                     │ Multer Upload    │
+                     │ Middleware       │
+                     └────────┬─────────┘
+                              │
+                              ▼
+                     ┌──────────────────┐
+                     │ Ollama Vision    │
+                     │ Model            │
+                     └────────┬─────────┘
+                              │
+                              ▼
+                     ┌──────────────────┐
+                     │ Metadata         │
+                     │ Extraction       │
+                     └────────┬─────────┘
+                              │
+                              ▼
+                     ┌──────────────────┐
+                     │ PostgreSQL       │
+                     │ Wardrobe DB      │
+                     └────────┬─────────┘
+                              │
+                              ▼
+                     ┌──────────────────┐
+                     │ Recommendation   │
+                     │ Engine           │
+                     └────────┬─────────┘
+                              │
+                              ▼
+                     ┌──────────────────┐
+                     │ AI Stylist       │
+                     │ Suggestions      │
+                     └──────────────────┘
+```
+
+---
+
+## 🛠️ Tech Stack
 
 ### Backend
 
@@ -97,7 +142,7 @@ Leverages local AI models through Ollama to:
 
 ### Storage
 
-* Local File System (uploads)
+* Local File Storage
 
 ### Infrastructure
 
@@ -106,83 +151,68 @@ Leverages local AI models through Ollama to:
 
 ### Frontend
 
-* HTML
-* CSS
-* Bootstrap
-* Vanilla JavaScript
+* HTML5
+* CSS3
+* JavaScript
+* Responsive Design
 
 ---
 
-## Architecture
-
-```text
-User Uploads Image
-        │
-        ▼
-Multer Upload Handler
-        │
-        ▼
-Uploads Folder
-        │
-        ▼
-Ollama Vision Model
-        │
-        ▼
-Metadata Extraction
-        │
-        ▼
-PostgreSQL
-        │
-        ▼
-Wardrobe API
-        │
-        ▼
-Recommendation Engine
-```
-
----
-
-## Project Structure
+## 📂 Project Structure
 
 ```text
 StyleMate/
 
 ├── config/
-│   ├── db.js
+│   └── db.js
 │
 ├── controllers/
 │   ├── clothingController.js
-│   ├── recommendationController.js
+│   └── recommendationController.js
 │
 ├── middleware/
-│   ├── uploadMiddleware.js
+│   └── uploadMiddleware.js
 │
 ├── repositories/
-│   ├── clothingRepository.js
+│   └── clothingRepository.js
 │
 ├── routes/
 │   ├── clothingRoutes.js
-│   ├── recommendationRoutes.js
+│   └── recommendationRoutes.js
 │
 ├── services/
 │   ├── aiService.js
+│   ├── aiRecommendationService.js
 │   ├── clothingService.js
-│   ├── recommendationService.js
+│   └── recommendationService.js
 │
 ├── uploads/
 │
 ├── public/
+│   ├── index.html
+│   ├── upload.html
 │   ├── wardrobe.html
 │   ├── recommendation.html
+│   ├── dashboard.html
+│   │
+│   ├── css/
+│   │   └── styles.css
+│   │
+│   └── js/
+│       ├── upload.js
+│       ├── wardrobe.js
+│       ├── recommendation.js
+│       └── dashboard.js
 │
-├── server.js
 ├── docker-compose.yml
+├── package.json
+├── server.js
 └── README.md
 ```
 
 ---
 
-## Database Schema
+## 🗄️ Database Schema
 
 ### clothing_items
 
@@ -203,7 +233,7 @@ CREATE TABLE clothing_items (
 
 ---
 
-## Setup
+## ⚙️ Local Setup
 
 ### Clone Repository
 
@@ -220,7 +250,7 @@ npm install
 
 ### Environment Variables
 
-Create a `.env` file:
+Create `.env`
 
 ```env
 PORT=3000
@@ -234,7 +264,7 @@ DB_NAME=stylemate
 
 ---
 
-## Run PostgreSQL and Ollama
+## 🐳 Start Services
 
 ```bash
 docker compose up -d
@@ -248,47 +278,34 @@ docker ps
 
 ---
 
-## Pull AI Model
-
-```bash
-docker exec -it stylemate-ollama ollama pull gemma3:4b
-```
-
-Verify:
-
-```bash
-docker exec -it stylemate-ollama ollama list
-```
-
----
-
-## Run Application
+## 🚀 Start Application
 
 ```bash
 npm run dev
 ```
 
-Server:
+Application URLs:
 
 ```text
+Home:
 http://localhost:3000
-```
+
+Upload:
+http://localhost:3000/upload.html
 
 Wardrobe:
-
-```text
 http://localhost:3000/wardrobe.html
-```
 
-Recommendations:
-
-```text
+AI Stylist:
 http://localhost:3000/recommendation.html
+
+Dashboard:
+http://localhost:3000/dashboard.html
 ```
 
 ---
 
-## API Endpoints
+## 📡 APIs
 
 ### Upload Clothing
 
@@ -296,23 +313,13 @@ http://localhost:3000/recommendation.html
 POST /api/clothes/upload
 ```
 
-Form Data:
-
-```text
-image -> file
-```
-
----
-
 ### Get Wardrobe
 
 ```http
 GET /api/clothes
 ```
 
----
-
-### Get Recommendation
+### Generate Recommendation
 
 ```http
 POST /api/recommendations
@@ -322,57 +329,54 @@ Request:
 
 ```json
 {
-  "occasion": "casual"
+  "occasion": "date"
 }
 ```
 
 ---
 
-## Future Enhancements
+## 🎯 Future Enhancements
 
 ### V2
 
-* User Authentication
-* Multi-user Support
-* Closet Analytics
+* AI Outfit Scoring
 * Outfit History
-* Favorite Outfits
+* User Preferences
+* Occasion Learning
 
 ### V3
 
 * Myntra Integration
 * Amazon Fashion Integration
 * Auto Wardrobe Sync
-* Weather-Based Recommendations
 
 ### V4
 
 * Virtual Try-On
-* AI Fashion Advisor
-* Color Matching Engine
-* Seasonal Outfit Planning
+* Weather-Based Styling
+* Fashion Trend Analysis
+* AI Fashion Chat Assistant
 
 ---
 
-## Learning Outcomes
+## 📚 Key Engineering Concepts Demonstrated
 
-This project demonstrates:
-
-* Backend System Design
-* REST API Development
-* PostgreSQL Database Design
+* REST API Design
+* Repository-Service Architecture
+* PostgreSQL Integration
 * Docker Containerization
 * AI Model Integration
-* Image Processing Pipelines
+* Computer Vision Pipelines
 * Recommendation Systems
-* Repository-Service Architecture
+* Responsive Frontend Development
+* Full Stack Application Design
 
 ---
 
-## Author
+## 👨‍💻 Author
 
 Sajal Gupta
 
 Backend Software Engineer
 
-Built as a hands-on project to explore AI-powered recommendation systems and scalable backend architecture.
+Built to explore the intersection of Computer Vision, Generative AI, and Personalized Recommendation Systems.
